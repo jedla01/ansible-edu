@@ -1,0 +1,19 @@
+# App servers
+[app]
+app1    ansible_host=192.168.56.10
+app2    ansible_host=192.168.56.11
+
+# DB servers
+[db]
+db1      ansible_host=192.168.56.12
+
+# Group of all servers
+[multi:children]
+app
+db
+
+# Variables for all servers
+[multi:vars]
+ansible_ssh_user=vagrant
+ansible_ssh_private_key_file=/mnt/c/Users/{{ user }}/.vagrant.d/insecure_private_key
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
